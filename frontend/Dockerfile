@@ -1,24 +1,22 @@
-FROM node:16.0.0-slim
+FROM node:16.13.0-slim
 
 RUN apt-get update && apt-get install -y \
     sudo curl vim wget procps \
     && apt clean \
     && rm -rf /var/lib/apt/lists/*
 
+ENV NEXT_TELEMETRY_DISABLED=1
 ENV USER_NAME=node
 ENV USER_UID=1000
 ARG wkdir=/home/${USER_NAME}/app
 
 WORKDIR ${wkdir}
 
-COPY ./app/package*.json /home/${USER_NAME}/app/
-COPY ./app/yarn.lock /home/${USER_NAME}/app/
+COPY ./app/ /home/${USER_NAME}/app/
 
 RUN yarn install
 
-COPY ./app/ /home/${USER_NAME}/app/
-
-# RUN npm run-script build
+RUN yarn build
 
 RUN echo "root:root" | chpasswd \
     && usermod -aG sudo ${USER_NAME} \
@@ -30,4 +28,4 @@ RUN echo "root:root" | chpasswd \
 USER ${USER_NAME}
 
 
-# CMD [ "npx", "serve", "-s", "-n", "build" ]
+# CMD [ "yarn", "start" ]
