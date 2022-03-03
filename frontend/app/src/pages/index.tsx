@@ -1,34 +1,36 @@
 import type { NextPage } from 'next'
-import React from 'react'
-import BtnEvent from '../components/modules/BtnEvent'
-import HoverEvent from '../components/modules/HoverEvent'
-import InputUserEvent from '../components/modules/InputEvent'
-import MainContainer from '../components/modules/MainContainer'
-import DefaultLayout from '../components/templates/DefaultLayout'
+import { useRouter } from 'next/router'
+
+// components
+import Layout from '../components/templates/Layout'
+import SubTitle from '../components/atoms/SubTitle'
+
+// contexts
+import { appName, testCase, title } from '../contexts/AppBasicContext'
 
 const Home: NextPage = () => {
-  const title = 'React testing'
-  const appTitle = 'React * Next Testing'
-  const copyright = 'Aisin Edge Team'
-
+  const router = useRouter()
   return (
-    <DefaultLayout title={title} appTitle={appTitle} copyright={copyright}>
-      <MainContainer>
-        <div className='px-10'>
-          <div className='flex flex-row gap-10 justify-center '>
-            <div>
-              <BtnEvent />
+    <Layout title={title} appName={appName}>
+      <div className='py-10'>
+        {/* SubTitle */}
+        <SubTitle title={'Home'} />
+      </div>
+      <div className='py-10'>
+        <div className='flex justify-center items-center flex-wrap'>
+          {testCase.map((item) => (
+            <div key={item} className='mx-5'>
+              <button
+                className='p-20 border-2 text-2xl rounded-xl hover:bg-pink-100 hover:underline'
+                onClick={() => router.push(item.toLocaleLowerCase())}
+              >
+                {item}
+              </button>
             </div>
-            <div>
-              <HoverEvent />
-            </div>
-            <div>
-              <InputUserEvent />
-            </div>
-          </div>
+          ))}
         </div>
-      </MainContainer>
-    </DefaultLayout>
+      </div>
+    </Layout>
   )
 }
 

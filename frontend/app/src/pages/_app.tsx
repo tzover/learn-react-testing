@@ -1,7 +1,28 @@
-import '../styles/globals.css'
 import type { AppProps } from 'next/app'
+import Head from 'next/head'
+
+// styling
+import '../styles/globals.css'
+
+// contexts
+import { title } from '../contexts/AppBasicContext'
+import { RecoilRoot } from 'recoil'
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <>
+      <Head>
+        <title>{title}</title>
+        <meta
+          name='description'
+          content='A Single Page Application Produced by yt'
+        />
+        <link rel='icon' href='/favicon.ico' />
+      </Head>
+      <RecoilRoot>
+        <Component {...pageProps} />
+      </RecoilRoot>
+    </>
+  )
 }
 export default MyApp

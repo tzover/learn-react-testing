@@ -3,20 +3,22 @@ import Head from 'next/head'
 
 interface Props {
   title: string
-  appTitle: string
+  appName: string
 }
 
 const Header: React.FC<Props> = (props) => {
-  const { title, appTitle } = props
+  const { title, appName } = props
   return (
     <>
       <Head>
         <title>{title}</title>
       </Head>
-      <div className='fixed top-0 w-full bg-pink-100 mb-24'>
-        <h1 className='m-4 text-4xl font-bold tracking-widest italic'>
-          {appTitle}
-        </h1>
+      <div className='flex items-center bg-pink-100 shadow-2xl'>
+        <div className='p-3'>
+          <h1 className='text-2xl font-extrabold bg-clip-text tracking-widest italic text-gray-500'>
+            {appName}
+          </h1>
+        </div>
       </div>
     </>
   )

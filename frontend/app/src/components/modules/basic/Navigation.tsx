@@ -12,7 +12,7 @@ const Navigation = () => {
       </div>
       <div className='flex flex-row gap-10 p-3 justify-end'>
         {navMenus.map((menu) => (
-          <div className='hover:bg-blue-300 cursor-pointer p-3' key='menu'>
+          <div className='hover:bg-blue-300 cursor-pointer p-3' key={menu}>
             <Link href='/'>{menu}</Link>
           </div>
         ))}
