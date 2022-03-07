@@ -40,9 +40,7 @@ const Basic = () => {
           </div>
         </Testing>
 
-        <Testing testing='Hooks'>Hoo</Testing>
-
-        <Testing testing='Function'>Function</Testing>
+        <Testing testing='Hooks and Function'>Hoo</Testing>
 
         <Testing testing='Styling'>Styling</Testing>
       </div>
