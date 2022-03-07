@@ -3,12 +3,13 @@ import { useRouter } from 'next/router'
 
 // components
 import Layout from '../components/templates/Layout'
+import Basic from '../components/modules/Basic'
 import SubTitle from '../components/atoms/SubTitle'
 
 // contexts
 import { appName, title } from '../contexts/AppBasicContext'
 
-const Basic: NextPage = () => {
+const BasicPage: NextPage = () => {
   const router = useRouter()
   return (
     <Layout title={title} appName={appName}>
@@ -16,7 +17,11 @@ const Basic: NextPage = () => {
         {/* SubTitle */}
         <SubTitle title={'Basic'} />
       </div>
-      <div className='py-10'>kokokokokokoko</div>
+      {/* Main container */}
+      <div className='px-12'>
+        <Basic />
+      </div>
+      {/* Page back button Container */}
       <div className='py-10'>
         <div className='w-full text-right px-10'>
           <button
@@ -31,4 +36,4 @@ const Basic: NextPage = () => {
   )
 }
 
-export default Basic
+export default BasicPage

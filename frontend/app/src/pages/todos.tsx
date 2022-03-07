@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 // components
 import Layout from '../components/templates/Layout'
 import SubTitle from '../components/atoms/SubTitle'
-import Todos from '../components/modules/todos/Todos'
+import Todos from '../components/modules/Todos'
 
 // contexts
 import { appName, title } from '../contexts/AppBasicContext'

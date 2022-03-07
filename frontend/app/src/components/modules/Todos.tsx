@@ -2,31 +2,31 @@ import { useEffect, useState } from 'react'
 import { useRecoilValue } from 'recoil'
 
 // hooks
-import useInputTodo from '../../../hooks/useInputTodo'
-import useTodos from '../../../hooks/useTodos'
-import usePageNation from '../../../hooks/usePagenation'
+import useInputTodo from '../../hooks/useInputTodo'
+import useTodos from '../../hooks/useTodos'
+import usePageNation from '../../hooks/usePagenation'
 
 // comtexts
-import { todosHeader } from '../../../contexts/AppBasicContext'
-import { pageState } from '../../../contexts/TodosPagenationAtom'
+import { todosHeader } from '../../contexts/AppBasicContext'
+import { pageState } from '../../contexts/TodosPagenationAtom'
 import {
   deleteModalState,
   editTodosState,
   infoValue,
   isEditState,
   todosState,
-} from '../../../contexts/TodosAtom'
+} from '../../contexts/TodosAtom'
 
 // components
-import DeleteModal from './DeleteModal'
-import DeleteButton from '../../atoms/DeleteButton'
-import EditFlagButton from '../../atoms/EditFlagButton'
-import EditRegistrationButton from '../../atoms/EditRegistrationButton'
-import InputDescription from '../../atoms/InputDescription'
-import InputEditTodo from '../../atoms/InputEditTodo'
-import InputTodo from '../../atoms/InputTodo'
-import RegistrationButton from '../../atoms/RegistrationButton'
-import ResetButton from '../../atoms/ResetButton'
+import DeleteModal from './todos/DeleteModal'
+import DeleteButton from '../atoms/DeleteButton'
+import EditFlagButton from '../atoms/EditFlagButton'
+import EditRegistrationButton from '../atoms/EditRegistrationButton'
+import InputDescription from '../atoms/InputDescription'
+import InputEditTodo from '../atoms/InputEditTodo'
+import InputTodo from '../atoms/InputTodo'
+import RegistrationButton from '../atoms/RegistrationButton'
+import ResetButton from '../atoms/ResetButton'
 
 const Todos = () => {
   const todos = useRecoilValue(todosState)
