@@ -16,7 +16,7 @@ const Blog: NextPage = () => {
         {/* SubTitle */}
         <SubTitle title={'Blog'} />
       </div>
-      <div className='py-10'>kokokokokokoko</div>
+      <div className='py-10'>Coming soon...</div>
       <div className='py-10'>
         <div className='w-full text-right px-10'>
           <button

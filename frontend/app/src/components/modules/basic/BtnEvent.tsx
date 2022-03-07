@@ -9,8 +9,7 @@ const BtnEvent = () => {
     setPushNum(pushNum + 1)
   }
   return (
-    <div className='flex flex-col'>
-      <h2 className='border-b-2 text-2xl'>Button Event</h2>
+    <div className='flex flex-col border-b-2 p-2'>
       <div className='p-3'>
         <p>{btnEventFlag ? 'pushed.' : 'Please push!'}</p>
         <p className={`${btnEventFlag ? 'text-green-500' : ''}`}>
