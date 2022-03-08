@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const BtnEvent = () => {
+const RouterEvent = () => {
   const [btnEventFlag, setBtnEventFlag] = useState(false)
   const [pushNum, setPushNum] = useState(0)
 
@@ -28,4 +28,19 @@ const BtnEvent = () => {
   )
 }
 
-export default BtnEvent
+export default RouterEvent
+
+// http_proxy="http://0082651-z100:asn0082651@160.203.98.12:8080/"
+// https_proxy="http://0082651-z100:asn0082651@160.203.98.12:8080/"
+
+// Acquire::http::Proxy "http://0082651-z100:asn0082651@160.203.98.12:8080/";
+// Acquire::https::Proxy "http://0082651-z100:asn0082651@160.203.98.12:8080/";
+
+// proxy=http://0082651-z100:asn0082651@160.203.98.12:8080
+
+// "proxies":{
+//                 "default":{
+//                         "httpProxy": "http://0082651-z100:asn0082651@160.203.98.12:8080",
+//                         "httpsProxy": "http://0082651-z100:asn0082651@160.203.98.12:8080"
+//                 }
+//         },

@@ -19,14 +19,14 @@ import {
 
 // components
 import DeleteModal from './todos/DeleteModal'
-import DeleteButton from '../atoms/DeleteButton'
-import EditFlagButton from '../atoms/EditFlagButton'
-import EditRegistrationButton from '../atoms/EditRegistrationButton'
-import InputDescription from '../atoms/InputDescription'
-import InputEditTodo from '../atoms/InputEditTodo'
-import InputTodo from '../atoms/InputTodo'
-import RegistrationButton from '../atoms/RegistrationButton'
-import ResetButton from '../atoms/ResetButton'
+import DeleteButton from '../atoms/todos/DeleteButton'
+import EditFlagButton from '../atoms/todos/EditFlagButton'
+import EditRegistrationButton from '../atoms/todos/EditRegistrationButton'
+import InputDescription from '../atoms/todos/InputDescription'
+import InputEditTodo from '../atoms/todos/InputEditTodo'
+import InputTodo from '../atoms/todos/InputTodo'
+import RegistrationButton from '../atoms/todos/RegistrationButton'
+import ResetButton from '../atoms/todos/ResetButton'
 
 const Todos = () => {
   const todos = useRecoilValue(todosState)
@@ -135,9 +135,8 @@ const Todos = () => {
                 .map((item, idx) => (
                   <div
                     key={item.id}
-                    className={`flex justify-between items-center px-3 my-3 ${
-                      idx % 2 !== 0 && 'bg-blue-100'
-                    }`}
+                    className={`flex justify-between items-center px-3 my-3 ${idx % 2 !== 0 && 'bg-blue-100'
+                      }`}
                   >
                     {/* Date */}
                     <div className='flex items-center'>
@@ -154,9 +153,8 @@ const Todos = () => {
                     {/* Todo */}
                     <div>
                       <p
-                        className={`text-xl ${
-                          item.complete && 'line-through text-green-500'
-                        }`}
+                        className={`text-xl ${item.complete && 'line-through text-green-500'
+                          }`}
                       >
                         {item.todo}
                       </p>

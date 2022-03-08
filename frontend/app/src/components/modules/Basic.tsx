@@ -1,6 +1,11 @@
-import BtnEvent from './basic/BtnEvent'
-import InputEvent from './basic/InputEvent'
+import Image from "next/image"
+
+// components
 import Testing from './basic/Testing'
+import BtnEvent from './basic/BtnEvent'
+import InputStateEvent from './basic/InputStateEvent'
+import FetchEvent from './basic/FetchEvent'
+import InputRefEvent from "./basic/InputRefEvent"
 
 const Basic = () => {
   return (
@@ -21,6 +26,17 @@ const Basic = () => {
             <button className='w-1/4 p-1 my-2 border-2 hover:bg-pink-100'>
               Back
             </button>
+            <button
+              type='button'
+              className='w-1/4 p-1 my-2 border-2 bg-gray-400'
+              disabled
+            >
+              disabled
+            </button>
+          </div>
+          {/* image */}
+          <div className='border-b-2 p-2'>
+            <Image src={"/vercel.svg"} width={100} height={100} alt={"test_img"} />
           </div>
           {/* input */}
           <div className='flex flex-col border-b-2 p-2'>
@@ -40,9 +56,10 @@ const Basic = () => {
         </Testing>
 
         <Testing testing='Hooks and Function'>
-          <InputEvent />
+          <InputStateEvent />
+          <InputRefEvent />
           <BtnEvent />
-          axios
+          <FetchEvent />
         </Testing>
 
         <Testing testing='Styling'>
@@ -55,13 +72,7 @@ const Basic = () => {
             <button className='hover:bg-pink-100 p-2 my-2 border-2'>
               ClickするとStyleが変わる
             </button>
-            <button
-              type='button'
-              className='p-2 my-2 border-2 bg-gray-400'
-              disabled
-            >
-              disabled
-            </button>{' '}
+            
           </div>
         </Testing>
       </div>

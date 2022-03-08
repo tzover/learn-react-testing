@@ -1,7 +1,7 @@
 import { Dispatch, memo, SetStateAction } from 'react'
 import { useRecoilValue } from 'recoil'
-import { editTodosState } from '../../contexts/TodosAtom'
-import useTodos from '../../hooks/useTodos'
+import { editTodosState } from '../../../contexts/TodosAtom'
+import useTodos from '../../../hooks/useTodos'
 
 interface Props {
   inputEditTodo: string

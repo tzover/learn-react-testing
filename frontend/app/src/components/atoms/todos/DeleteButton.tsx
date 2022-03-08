@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import { memo } from 'react'
 import { useRecoilValue } from 'recoil'
-import { pageState } from '../../contexts/TodosPagenationAtom'
-import useTodos from '../../hooks/useTodos'
+import { pageState } from '../../../contexts/TodosPagenationAtom'
+import useTodos from '../../../hooks/useTodos'
 
 interface Props {
   idx: number
