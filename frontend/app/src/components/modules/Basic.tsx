@@ -1,11 +1,12 @@
-import Image from "next/image"
+import Image from 'next/image'
 
 // components
 import Testing from './basic/Testing'
-import BtnEvent from './basic/BtnEvent'
+import RouterEvent from './basic/RouterEvent'
 import InputStateEvent from './basic/InputStateEvent'
 import FetchEvent from './basic/FetchEvent'
-import InputRefEvent from "./basic/InputRefEvent"
+import InputRefEvent from './basic/InputRefEvent'
+import PropsButton from './basic/PropsButton'
 
 const Basic = () => {
   return (
@@ -33,10 +34,16 @@ const Basic = () => {
             >
               disabled
             </button>
+            <PropsButton btnName='NamePropsButton' />
           </div>
           {/* image */}
           <div className='border-b-2 p-2'>
-            <Image src={"/vercel.svg"} width={100} height={100} alt={"test_img"} />
+            <Image
+              src={'/vercel.svg'}
+              width={100}
+              height={100}
+              alt={'test_img'}
+            />
           </div>
           {/* input */}
           <div className='flex flex-col border-b-2 p-2'>
@@ -58,7 +65,7 @@ const Basic = () => {
         <Testing testing='Hooks and Function'>
           <InputStateEvent />
           <InputRefEvent />
-          <BtnEvent />
+          <RouterEvent />
           <FetchEvent />
         </Testing>
 
@@ -72,7 +79,6 @@ const Basic = () => {
             <button className='hover:bg-pink-100 p-2 my-2 border-2'>
               ClickするとStyleが変わる
             </button>
-            
           </div>
         </Testing>
       </div>

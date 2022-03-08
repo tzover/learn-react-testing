@@ -1,5 +1,4 @@
 import type { NextPage } from 'next'
-import { useRouter } from 'next/router'
 
 // components
 import Layout from '../components/templates/Layout'
@@ -8,9 +7,9 @@ import Todos from '../components/modules/Todos'
 
 // contexts
 import { appName, title } from '../contexts/AppBasicContext'
+import PageBackButton from '../components/atoms/PageBackButton'
 
 const TodosPage: NextPage = () => {
-  const router = useRouter()
   return (
     <Layout title={title} appName={appName}>
       <div className='py-10'>
@@ -21,14 +20,7 @@ const TodosPage: NextPage = () => {
         <Todos />
       </div>
       <div className='py-10'>
-        <div className='w-full text-right px-10'>
-          <button
-            className='p-5 border-2 rounded-2xl hover:bg-pink-100 hover:underline'
-            onClick={() => router.push('/')}
-          >
-            Home
-          </button>
-        </div>
+        <PageBackButton />
       </div>
     </Layout>
   )
