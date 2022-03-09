@@ -41,7 +41,6 @@ export default BasicPage
 
 export const getStaticProps = async () => {
   const response = await fetchUsers()
-  console.log(response)
   return {
     props: {
       users: response?.slice(0, 3),

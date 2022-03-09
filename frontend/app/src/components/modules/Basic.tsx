@@ -8,6 +8,7 @@ import InputStateEvent from './basic/InputStateEvent'
 import FetchEvent from './basic/FetchEvent'
 import InputRefEvent from './basic/InputRefEvent'
 import PropsButton from './basic/PropsButton'
+import GlobalState from './basic/GlobalState'
 
 // models
 import { UserIF } from '../../models/user'
@@ -84,6 +85,7 @@ const Basic = (props: Props) => {
           <Testing testing='GlobalState'>
             <h3>Recoil</h3>
             <h3>useContext</h3>
+            <GlobalState />
           </Testing>
           <Testing testing='Styling'>
             <div className='flex flex-col border-b-2 p-2'>
