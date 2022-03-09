@@ -83,8 +83,6 @@ const Basic = (props: Props) => {
 
         <div className='flex-1'>
           <Testing testing='GlobalState'>
-            <h3>Recoil</h3>
-            <h3>useContext</h3>
             <GlobalState />
           </Testing>
           <Testing testing='Styling'>

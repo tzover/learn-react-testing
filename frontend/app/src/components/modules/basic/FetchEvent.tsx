@@ -45,11 +45,11 @@ const FetchEvent = (props: Props) => {
   return (
     <div className='flex flex-col border-b-2 p-2'>
       <div className='px-10'>
-        <p className='underline'>Client side fetch</p>
+        <h3 className='underline'>Client side fetch</h3>
         {renderResult()}
       </div>
       <div className='px-10'>
-        <p className='underline'>Server side fetch</p>
+        <h3 className='underline'>Server side fetch</h3>
         {users &&
           users.map((item) => (
             <div key={item.id} className='my-2'>
@@ -62,14 +62,17 @@ const FetchEvent = (props: Props) => {
           ))}
       </div>
       <div className='px-10'>
-        <p className='underline'>Click event fetch (client)</p>
+        <h3 className='underline'>Click event fetch (client)</h3>
         <div className='p-3'>
           <button
-            className='w-full bg-pink-100 p-2 hover:opacity-70'
+            className={`w-full p-2 ${
+              flag ? 'bg-gray-500' : 'bg-pink-100 hover:opacity-70'
+            }`}
             type='button'
+            disabled={flag && true}
             onClick={() => clickFetching()}
           >
-            Click here!
+            {flag ? 'Clicked' : 'Click here!'}
           </button>
           {flag &&
             result &&
