@@ -1,8 +1,16 @@
-import axios from "axios";
+import axios from 'axios'
+import { UserIF } from '../models/user'
 
 export async function fetchUsers() {
-  // https://jsonplaceholder.typicode.com/users
-  const response = axios.get("https://jsonplaceholder.typicode.com/users")
-
-  console.log(response)
+  try {
+    const response = await axios.get<UserIF[]>(
+      'https://jsonplaceholder.typicode.com/users',
+    )
+    return response.data
+  } catch (e) {
+    if (axios.isAxiosError(e) && e.response && e.response.status === 400) {
+      console.log('400 Error')
+      console.log(e.message)
+    }
+  }
 }
