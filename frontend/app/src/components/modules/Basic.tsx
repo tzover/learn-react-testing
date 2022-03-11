@@ -85,9 +85,11 @@ const Basic = (props: Props) => {
           <Testing testing='GlobalState'>
             <GlobalState />
           </Testing>
-          <Testing testing='Styling'>
-            <Styling />
-          </Testing>
+          <div className='mt-28'>
+            <Testing testing='Styling'>
+              <Styling />
+            </Testing>
+          </div>
         </div>
       </div>
     </>
