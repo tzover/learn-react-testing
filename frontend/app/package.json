@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "test": "jest --watchAll",
-    "test:ci": "jest --ci",
+    "test:ci": "jest --collectCoverage --coverageDirectory=\"./ci/coverage\" --ci",
     "lint": "eslint src/**/*.{ts,tsx}",
     "lint:fix": "eslint src/**/*.{ts,tsx} --fix"
   },
