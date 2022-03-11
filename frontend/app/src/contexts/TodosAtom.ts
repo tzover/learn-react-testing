@@ -1,4 +1,6 @@
 import { atom, selector } from 'recoil'
+
+// models
 import { TodoIF } from '../models/todos'
 
 export const todosState = atom<TodoIF[]>({

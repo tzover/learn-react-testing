@@ -1,12 +1,12 @@
 import type { NextPage } from 'next'
 
-// components
-import Layout from '../components/templates/Layout'
-import SubTitle from '../components/atoms/SubTitle'
-
 // contexts
 import { appName, title } from '../contexts/AppBasicContext'
 import PageBackButton from '../components/atoms/PageBackButton'
+
+// components
+import Layout from '../components/templates/Layout'
+import SubTitle from '../components/atoms/SubTitle'
 
 const Blog: NextPage = () => {
   return (

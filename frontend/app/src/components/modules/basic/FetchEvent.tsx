@@ -1,8 +1,13 @@
 import axios from 'axios'
 import { useState } from 'react'
-import useUserInfo from '../../../hooks/useUserInfo'
+
+// interface
 import { UserIF } from '../../../models/user'
 
+// hooks
+import useUserInfo from '../../../hooks/useUserInfo'
+
+// interface
 interface Props {
   users: UserIF[]
 }

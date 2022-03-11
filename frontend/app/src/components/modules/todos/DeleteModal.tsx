@@ -8,6 +8,7 @@ import {
   todosState,
 } from '../../../contexts/TodosAtom'
 
+// interface
 interface Props {
   isDeleteModalOpen: boolean
 }

@@ -1,3 +1,4 @@
+// interface
 interface Props {
   btnName: string
 }

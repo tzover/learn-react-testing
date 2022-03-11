@@ -1,12 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useRecoilValue } from 'recoil'
 
-// hooks
-import useInputTodo from '../../hooks/useInputTodo'
-import useTodos from '../../hooks/useTodos'
-import usePageNation from '../../hooks/usePagenation'
-
-// comtexts
+// contexts
 import { todosHeader } from '../../contexts/AppBasicContext'
 import { pageState } from '../../contexts/TodosPagenationAtom'
 import {
@@ -16,6 +11,11 @@ import {
   isEditState,
   todosState,
 } from '../../contexts/TodosAtom'
+
+// hooks
+import useInputTodo from '../../hooks/useInputTodo'
+import useTodos from '../../hooks/useTodos'
+import usePageNation from '../../hooks/usePagenation'
 
 // components
 import DeleteModal from './todos/DeleteModal'
@@ -135,8 +135,9 @@ const Todos = () => {
                 .map((item, idx) => (
                   <div
                     key={item.id}
-                    className={`flex justify-between items-center px-3 my-3 ${idx % 2 !== 0 && 'bg-blue-100'
-                      }`}
+                    className={`flex justify-between items-center px-3 my-3 ${
+                      idx % 2 !== 0 && 'bg-blue-100'
+                    }`}
                   >
                     {/* Date */}
                     <div className='flex items-center'>
@@ -153,8 +154,9 @@ const Todos = () => {
                     {/* Todo */}
                     <div>
                       <p
-                        className={`text-xl ${item.complete && 'line-through text-green-500'
-                          }`}
+                        className={`text-xl ${
+                          item.complete && 'line-through text-green-500'
+                        }`}
                       >
                         {item.todo}
                       </p>

@@ -1,12 +1,12 @@
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 
+// contexts
+import { appName, testCase, title } from '../contexts/AppBasicContext'
+
 // components
 import Layout from '../components/templates/Layout'
 import SubTitle from '../components/atoms/SubTitle'
-
-// contexts
-import { appName, testCase, title } from '../contexts/AppBasicContext'
 
 const Home: NextPage = () => {
   const router = useRouter()

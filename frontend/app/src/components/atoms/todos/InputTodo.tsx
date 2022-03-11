@@ -1,6 +1,9 @@
 import { memo, SetStateAction } from 'react'
+
+// hooks
 import useTodos from '../../../hooks/useTodos'
 
+// interface
 interface Props {
   inputTodo: string
   onChangeInputTodo: (e: { target: { value: SetStateAction<string> } }) => void

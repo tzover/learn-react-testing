@@ -1,6 +1,9 @@
 import { memo } from 'react'
+
+// hooks
 import useTodos from '../../../hooks/useTodos'
 
+// interface
 interface Props {
   inputTodo: string
 }

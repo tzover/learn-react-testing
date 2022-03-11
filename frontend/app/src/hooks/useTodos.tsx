@@ -1,8 +1,11 @@
 import { useCallback } from 'react'
-import { checkTodo } from '../libs/checkTodo'
-import { getDateTime } from '../libs/getDateTime'
 import { v4 } from 'uuid'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
+
+// models
+import { TodoIF } from '../models/todos'
+
+// contexts
 import {
   deleteModalState,
   todosState,
@@ -10,7 +13,10 @@ import {
   editTodosState,
   isCompleteState,
 } from '../contexts/TodosAtom'
-import { TodoIF } from '../models/todos'
+
+// libs
+import { checkTodo } from '../libs/checkTodo'
+import { getDateTime } from '../libs/getDateTime'
 
 const useTodos = () => {
   const todos = useRecoilValue(todosState)

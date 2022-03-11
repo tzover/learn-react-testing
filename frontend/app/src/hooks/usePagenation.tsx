@@ -1,9 +1,11 @@
 import { useCallback, useState } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
+
+// contexts
 import { todosState } from '../contexts/TodosAtom'
 import { pageState } from '../contexts/TodosPagenationAtom'
 
-function usePageNation(news: string | any[]) {
+const usePageNation = (news: string | any[]) => {
   const todos = useRecoilValue(todosState)
   const [pageIdx, setPageIdx] = useRecoilState(pageState)
 

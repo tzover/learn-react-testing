@@ -1,5 +1,5 @@
 /* eslint-disable react/display-name */
-import React, { ReactNode, memo } from 'react'
+import { ReactNode, memo } from 'react'
 
 // components
 import Footer from '../modules/Footer'

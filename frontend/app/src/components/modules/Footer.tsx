@@ -1,4 +1,3 @@
-/* eslint-disable react/display-name */
 import { memo } from 'react'
 
 const Footer = memo(() => {

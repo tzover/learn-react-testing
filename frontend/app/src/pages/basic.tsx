@@ -1,23 +1,26 @@
-// components
-import Layout from '../components/templates/Layout'
-import Basic from '../components/modules/Basic'
-import SubTitle from '../components/atoms/SubTitle'
-
-// contexts
-import { appName, title } from '../contexts/AppBasicContext'
-import PageBackButton from '../components/atoms/PageBackButton'
-
-// libs
-import { fetchUsers } from '../libs/fetchUsers'
+import { NextPage } from 'next'
 
 // models
 import { UserIF } from '../models/user'
 
+// contexts
+import { appName, title } from '../contexts/AppBasicContext'
+
+// libs
+import { fetchUsers } from '../libs/fetchUsers'
+
+// components
+import Layout from '../components/templates/Layout'
+import Basic from '../components/modules/Basic'
+import SubTitle from '../components/atoms/SubTitle'
+import PageBackButton from '../components/atoms/PageBackButton'
+
+// interface
 interface Props {
   users: UserIF[]
 }
 
-const BasicPage = (props: Props) => {
+const BasicPage: NextPage<Props> = (props) => {
   const { users } = props
   return (
     <Layout title={title} appName={appName}>

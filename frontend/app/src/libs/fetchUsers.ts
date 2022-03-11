@@ -1,4 +1,6 @@
 import axios from 'axios'
+
+// models
 import { UserIF } from '../models/user'
 
 export async function fetchUsers() {

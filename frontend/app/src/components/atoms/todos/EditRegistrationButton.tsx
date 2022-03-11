@@ -1,9 +1,13 @@
-/* eslint-disable react/display-name */
 import { memo } from 'react'
 import { useRecoilValue } from 'recoil'
+
+// contexts
 import { editTodosState } from '../../../contexts/TodosAtom'
+
+// hooks
 import useTodos from '../../../hooks/useTodos'
 
+// interface
 interface Props {
   inputTodo: string
 }

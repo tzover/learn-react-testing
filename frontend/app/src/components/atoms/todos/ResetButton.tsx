@@ -1,6 +1,10 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import { useRecoilValue } from 'recoil'
+
+// contexts
 import { todosState } from '../../../contexts/TodosAtom'
+
+// hooks
 import useTodos from '../../../hooks/useTodos'
 
 const ResetButton = memo(() => {

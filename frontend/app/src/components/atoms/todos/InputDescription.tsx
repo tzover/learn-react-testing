@@ -1,5 +1,6 @@
 import { memo } from 'react'
 
+// interface
 interface Props {
   isEdit: boolean
   description: string
