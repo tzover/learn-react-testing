@@ -8,7 +8,7 @@ import PageBackButton from '../components/atoms/PageBackButton'
 import Layout from '../components/templates/Layout'
 import SubTitle from '../components/atoms/SubTitle'
 
-const Blog: NextPage = () => {
+const BlogPage: NextPage = () => {
   return (
     <Layout title={title} appName={appName}>
       <div className='py-10'>
@@ -23,4 +23,4 @@ const Blog: NextPage = () => {
   )
 }
 
-export default Blog
+export default BlogPage

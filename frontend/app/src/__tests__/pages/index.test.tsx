@@ -7,6 +7,7 @@ import Home from '../../pages/index'
 /* 実施するテストケース
 
 - Rendering
+- onClick action
 */
 
 // mock化
@@ -33,6 +34,24 @@ describe('Unit -> pages', () => {
     expect(screen.getByText(/react/i)).toBeInTheDocument()
 
     // Main contents
+    expect(screen.getByRole('button', { name: /basic/i })).toBeTruthy()
+    expect(screen.getByRole('button', { name: /todos/i })).toBeTruthy()
+    expect(screen.getByRole('button', { name: /blog/i })).toBeTruthy()
+
+    // Footer.tsx
+    expect(screen.findByText('Aisin Edgecloud Team')).toBeTruthy()
+  })
+  it('Rendering', () => {
+    act(() => {
+      render(<Home />)
+    })
+    // Header.tsx
+    expect(screen.getByText(/react/i)).toBeInTheDocument()
+
+    // Main contents
+    expect(screen.getByRole('button', { name: /basic/i })).toBeTruthy()
+    expect(screen.getByRole('button', { name: /todos/i })).toBeTruthy()
+    expect(screen.getByRole('button', { name: /blog/i })).toBeTruthy()
 
     // Footer.tsx
     expect(screen.findByText('Aisin Edgecloud Team')).toBeTruthy()
