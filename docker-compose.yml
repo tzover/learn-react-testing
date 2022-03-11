@@ -15,5 +15,5 @@ services:
     restart: always
 volumes:
   frontend-volume:
-    name: ${PROJ_NAME}-volume
+    name: ${CONTAINER_BASENAME}-volume
     driver: local
