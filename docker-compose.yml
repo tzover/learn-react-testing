@@ -1,8 +1,8 @@
-version: '3.3'
+version: "3.3"
 services:
   frontend:
-    image: ${PROJ_NAME}-frontend:latest
-    container_name: ${PROJ_NAME}-frontend
+    image: ${IMAGE_BASENAME}/frontend:${TAG}
+    container_name: ${CONTAINER_BASENAME}-frontend
     build:
       context: ./frontend
       dockerfile: Dockerfile
@@ -10,9 +10,7 @@ services:
       - ./frontend/app:/home/node/app
       - frontend-volume:/home/node/app/node_modules
     ports:
-      - ${FRONT_PORT}:3000
-    # depends_on:
-    #   - back
+      - ${FRONTEND_PORT}:3000
     tty: true
     restart: always
 volumes:

@@ -1,0 +1,104 @@
+default:
+  image: docker:19.03.6
+  tags:
+    - nx
+    - docker
+    - build1
+
+variables:
+  VERSION: v1.0.0
+  SERVICES: "frontend"
+
+stages:
+  - build
+  - push
+  - cleaning
+
+build:
+  stage: build
+  before_script:
+    - ci_branch_image=$(echo $CI_COMMIT_BRANCH | sed -ne 's|/|/|p' | sed -e 's|/|_|g')
+  script:
+    - for service in ${SERVICES} ; do
+    - docker build -t $CI_REGISTRY_IMAGE/${service}:$CI_COMMIT_SHA ./${service}/.
+    # - docker build -t $CI_REGISTRY_IMAGE/${service}:$CI_COMMIT_SHA .
+    - done
+  when: manual
+  allow_failure: false
+
+# test-frontend-service:
+#   stage: test
+#   before_script:
+#     - apk update && apk add --no-cache docker-compose
+#     - export TAG=$CI_COMMIT_SHA
+#   script:
+#     - |-
+#       docker-compose run --rm --no-deps frontend-service bash -c \
+#         'sudo yarn test:ci'
+#   artifacts:
+#     paths:
+#       - ./frontend/app/coverage
+#     expire_in: 1 week
+#   when: on_success
+# when: manual
+
+push:
+  stage: push
+  before_script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - ci_branch_image=$(echo $CI_COMMIT_BRANCH | sed -ne 's|/|/|p' | sed -e 's|/|_|g')
+  script:
+    - for service in ${SERVICES} ; do
+    - docker push $CI_REGISTRY_IMAGE/${service}:$CI_COMMIT_SHA
+    - if [ ${CI_COMMIT_REF_SLUG} = ${CI_DEFAULT_BRANCH} ] ;then
+    - docker tag $CI_REGISTRY_IMAGE/${service}:$CI_COMMIT_SHA $CI_REGISTRY_IMAGE/${service}:$VERSION
+    - docker tag $CI_REGISTRY_IMAGE/${service}:$CI_COMMIT_SHA $CI_REGISTRY_IMAGE/${service}:latest
+    - docker push $CI_REGISTRY_IMAGE/${service}:$VERSION
+    - docker push $CI_REGISTRY_IMAGE/${service}:latest
+    - else
+    - docker tag $CI_REGISTRY_IMAGE/${service}:$CI_COMMIT_SHA $CI_REGISTRY_IMAGE/${service}:$ci_branch_image-$VERSION
+    - docker push $CI_REGISTRY_IMAGE/${service}:$ci_branch_image-$VERSION
+    - fi
+    - done
+  when: on_success
+  # when: manual
+
+cleaning:
+  stage: cleaning
+  except:
+    - $CI_DEFAULT_BRANCH
+  before_script:
+    - ci_branch_image=$(echo $CI_COMMIT_BRANCH | sed -ne 's|/|/|p' | sed -e 's|/|_|g')
+  script:
+    - for service in ${SERVICES} ; do
+    - docker rmi $CI_REGISTRY_IMAGE/${service}:$CI_COMMIT_SHA
+    - if [ ${CI_COMMIT_REF_SLUG} = ${CI_DEFAULT_BRANCH} ] ;then
+    - docker rmi $CI_REGISTRY_IMAGE/${service}:$VERSION
+    - docker rmi $CI_REGISTRY_IMAGE/${service}:latest
+    - else
+    - docker rmi $CI_REGISTRY_IMAGE/${service}:$ci_branch_image-$VERSION
+    - fi
+    - done
+  when: on_success
+  # when: manual
+
+cleaning_on_failure:
+  stage: cleaning
+  before_script:
+    - apk update && apk add --no-cache docker-compose
+    - export TAG=$CI_COMMIT_SHA
+    - ci_branch_image=$(echo $CI_COMMIT_BRANCH | sed -ne 's|/|/|p' | sed -e 's|/|_|g')
+  script:
+    - docker-compose down
+    - for service in ${SERVICES} ; do
+    - docker rmi $CI_REGISTRY_IMAGE/${service}:$CI_COMMIT_SHA
+    - done
+    - for service in ${SERVICES} ; do
+    - if [ ${CI_COMMIT_REF_SLUG} = ${CI_DEFAULT_BRANCH} ] ;then
+    - docker rmi $CI_REGISTRY_IMAGE/${service}:$VERSION
+    - docker rmi $CI_REGISTRY_IMAGE/${service}:latest
+    - else
+    - docker rmi $CI_REGISTRY_IMAGE/${service}:$ci_branch_image-$VERSION
+    - fi
+    - done
+  when: on_failure
