@@ -1,15 +1,12 @@
 import { act, cleanup, render, screen } from '@testing-library/react'
-import { renderHook } from '@testing-library/react-hooks'
 import mockRouter from 'next-router-mock'
-import { RecoilRoot } from 'recoil'
 
 // components
-import BasicPage, { getStaticProps } from '../../pages/basic'
+import RouterTest from '../../../pages/basic/test-router'
 
 /* 実施するテストケース
 
 - Rendering
-- Function -> getStaticProps
 */
 
 // mock化
@@ -30,24 +27,15 @@ afterEach(() => {
 describe('Unit -> pages', () => {
   it('Rendering', () => {
     act(() => {
-      render(
-        <RecoilRoot>
-          <BasicPage users={[]} />
-        </RecoilRoot>,
-      )
+      render(<RouterTest />)
     })
     // Header.tsx
     expect(screen.getByText('React * Next Testing')).toBeInTheDocument()
 
     // Main contents
-    expect(screen.getByText(/Frontend Test Sample/i)).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Back' })).toBeInTheDocument()
 
     // Footer.tsx
     expect(screen.getByText(/Produced by © yt/i)).toBeInTheDocument()
-  })
-  it('Function -> getStaticProps', async () => {
-    const { result } = renderHook(async () => getStaticProps())
-    expect((await result.current).props.users).toBeTruthy()
   })
 })

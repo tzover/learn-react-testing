@@ -1,15 +1,13 @@
 import { act, cleanup, render, screen } from '@testing-library/react'
-import { renderHook } from '@testing-library/react-hooks'
 import mockRouter from 'next-router-mock'
 import { RecoilRoot } from 'recoil'
 
 // components
-import BasicPage, { getStaticProps } from '../../pages/basic'
+import TodosPage from '../../pages/todos'
 
 /* 実施するテストケース
 
 - Rendering
-- Function -> getStaticProps
 */
 
 // mock化
@@ -32,7 +30,7 @@ describe('Unit -> pages', () => {
     act(() => {
       render(
         <RecoilRoot>
-          <BasicPage users={[]} />
+          <TodosPage />
         </RecoilRoot>,
       )
     })
@@ -45,9 +43,5 @@ describe('Unit -> pages', () => {
 
     // Footer.tsx
     expect(screen.getByText(/Produced by © yt/i)).toBeInTheDocument()
-  })
-  it('Function -> getStaticProps', async () => {
-    const { result } = renderHook(async () => getStaticProps())
-    expect((await result.current).props.users).toBeTruthy()
   })
 })
