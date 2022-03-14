@@ -34,10 +34,10 @@ const Basic = (props: Props) => {
           {/* button */}
           <div className='flex flex-col border-b-2 p-2'>
             <button className='w-1/4 p-1 my-2 border-2 hover:bg-pink-100'>
-              Next
+              Next1
             </button>
             <button className='w-1/4 p-1 my-2 border-2 hover:bg-pink-100'>
-              Back
+              Next2
             </button>
             <button
               type='button'
