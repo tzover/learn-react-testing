@@ -1,6 +1,7 @@
 jest.mock('axios')
 import axios from 'axios'
 import { cleanup } from '@testing-library/react'
+import { renderHook } from '@testing-library/react-hooks'
 
 // libs
 import { fetchUsers, testUserData } from '../../libs/fetchUsers'
@@ -28,14 +29,13 @@ describe('Unit -> libs', () => {
   it('fetchUsers resolve', async () => {
     mockedAxios.get.mockResolvedValue({ data: testUserData })
 
-    console.log(await fetchUsers())
-    expect(await fetchUsers()).toBe(testUserData)
+    const { result } = renderHook(async () => fetchUsers())
+    expect(await result.current).toBe(testUserData)
   })
   it('fetchUsers reject', async () => {
     mockedAxios.get.mockRejectedValue(new Error('Async error'))
 
-    await fetchUsers()
-    console.log(await fetchUsers())
-    // expect(res.message).toBe('Mock response!!!')
+    const { result } = renderHook(async () => fetchUsers())
+    expect(await result.current).toBe(undefined)
   })
 })
