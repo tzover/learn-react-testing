@@ -24,7 +24,7 @@ afterEach(() => {
 })
 
 // Testing
-describe('Unit -> pages', () => {
+describe('Unit -> modules', () => {
   it('Rendering', () => {
     act(() => {
       render(<Footer />)
@@ -32,5 +32,13 @@ describe('Unit -> pages', () => {
 
     // default text
     expect(screen.getByText('Produced by © yt 2022')).toBeInTheDocument()
+
+    // styling
+    expect(screen.getByTestId('footer-container')).toHaveClass(
+      'fixed bottom-0 w-full bg-pink-100 p-2 border-t-2 border-gray-500',
+    )
+    expect(screen.getByTestId('footer-text')).toHaveClass(
+      'w-11/12 text-right text-gray-500 opacity-80',
+    )
   })
 })

@@ -2,7 +2,7 @@ import { act, cleanup, render, screen } from '@testing-library/react'
 import mockRouter from 'next-router-mock'
 
 // components
-import PageBackButton from '../../../components/atoms/PageBackButton'
+import Header from '../../../components/modules/Header'
 
 /* 実施するテストケース
 
@@ -24,12 +24,11 @@ afterEach(() => {
 })
 
 // Testing
-describe('Unit -> atoms', () => {
+describe('Unit -> modules', () => {
   it('Rendering', () => {
     act(() => {
-      render(<PageBackButton />)
+      render(<Header title={'TEST'} appName={'TEST'} />)
     })
-
-    expect(screen.getByRole('button', { name: /back/i })).toBeTruthy()
+    expect(screen.getByText('TEST')).toBeInTheDocument()
   })
 })

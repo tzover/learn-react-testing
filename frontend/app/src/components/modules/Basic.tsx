@@ -55,6 +55,7 @@ const Basic = (props: Props) => {
               width={100}
               height={100}
               alt={'test_img'}
+              data-testid='test_img'
             />
           </div>
           {/* input */}

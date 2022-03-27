@@ -24,7 +24,7 @@ afterEach(() => {
 })
 
 // Testing
-describe('Unit -> pages', () => {
+describe('Unit -> atoms', () => {
   it('Rendering', () => {
     act(() => {
       render(<SubTitle title='TEST' />)
