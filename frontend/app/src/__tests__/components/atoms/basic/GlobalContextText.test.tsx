@@ -1,5 +1,7 @@
 import { act, cleanup, render, screen } from '@testing-library/react'
-import mockRouter from 'next-router-mock'
+
+// contexts
+import AppProvider, { AppProviders } from '../../../../contexts/AppProvider'
 
 // components
 import GlobalContextText from '../../../../components/atoms/basic/GlobalContextText'
@@ -8,10 +10,6 @@ import GlobalContextText from '../../../../components/atoms/basic/GlobalContextT
 
 - Rendering
 */
-
-// mock化
-jest.mock('next/dist/client/router', () => require('next-router-mock'))
-mockRouter.setCurrentUrl('/')
 
 // Processing to be performed before the test
 beforeEach(() => {
@@ -24,12 +22,26 @@ afterEach(() => {
 })
 
 // Testing
-describe('Unit -> pages', () => {
+describe('Unit -> atoms', () => {
   it('Rendering', () => {
+    const testFunc = jest.fn()
     act(() => {
-      render(<GlobalContextText />)
+      render(
+        <AppProvider>
+          <AppProviders.Provider
+            value={{
+              useContextInput: '',
+              setUseContextInput: testFunc,
+              useContextResult: 'TEST',
+              setUseContextResult: testFunc,
+            }}
+          >
+            <GlobalContextText />
+          </AppProviders.Provider>
+        </AppProvider>,
+      )
     })
 
-    expect(screen.getByText('textbox')).toBeInTheDocument()
+    expect(screen.getByText('TEST')).toBeInTheDocument()
   })
 })

@@ -64,6 +64,7 @@ const Basic = (props: Props) => {
               type='text'
               placeholder='testing'
               className='border-2 p-2 my-2'
+              data-testid='test_input_sample'
             />
             <div className='p-2 my-2'>
               <input type='checkbox' />

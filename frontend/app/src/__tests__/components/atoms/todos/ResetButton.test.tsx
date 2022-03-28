@@ -1,5 +1,4 @@
 import { act, cleanup, render, screen } from '@testing-library/react'
-import mockRouter from 'next-router-mock'
 import { RecoilRoot } from 'recoil'
 
 // components
@@ -9,10 +8,6 @@ import ResetButton from '../../../../components/atoms/todos/ResetButton'
 
 - Rendering
 */
-
-// mock化
-jest.mock('next/dist/client/router', () => require('next-router-mock'))
-mockRouter.setCurrentUrl('/')
 
 // Processing to be performed before the test
 beforeEach(() => {
@@ -25,7 +20,7 @@ afterEach(() => {
 })
 
 // Testing
-describe('Unit -> pages', () => {
+describe('Unit -> atoms', () => {
   it('Rendering', () => {
     act(() => {
       render(

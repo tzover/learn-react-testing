@@ -1,5 +1,8 @@
 import { act, cleanup, render, screen } from '@testing-library/react'
-import mockRouter from 'next-router-mock'
+import userEvent from '@testing-library/user-event'
+
+// contexts
+import AppProvider, { AppProviders } from '../../../../contexts/AppProvider'
 
 // components
 import GlobalContextInput from '../../../../components/atoms/basic/GlobalContextInput'
@@ -7,11 +10,8 @@ import GlobalContextInput from '../../../../components/atoms/basic/GlobalContext
 /* 実施するテストケース
 
 - Rendering
+- userEvent onChange and onKeyPress
 */
-
-// mock化
-jest.mock('next/dist/client/router', () => require('next-router-mock'))
-mockRouter.setCurrentUrl('/')
 
 // Processing to be performed before the test
 beforeEach(() => {
@@ -24,12 +24,93 @@ afterEach(() => {
 })
 
 // Testing
-describe('Unit -> pages', () => {
+describe('Unit -> atoms', () => {
   it('Rendering', () => {
+    const testFunc = jest.fn()
     act(() => {
-      render(<GlobalContextInput />)
+      render(
+        <AppProvider>
+          <AppProviders.Provider
+            value={{
+              useContextInput: '',
+              setUseContextInput: testFunc,
+              useContextResult: '',
+              setUseContextResult: testFunc,
+            }}
+          >
+            <GlobalContextInput />
+          </AppProviders.Provider>
+        </AppProvider>,
+      )
     })
 
     expect(screen.getByRole('textbox')).toBeTruthy()
+  })
+  it('userEvent onChange', () => {
+    const testFunc = jest.fn()
+    const targetTestFunc = jest.fn()
+
+    act(() => {
+      render(
+        <AppProvider>
+          <AppProviders.Provider
+            value={{
+              useContextInput: '',
+              setUseContextInput: targetTestFunc,
+              useContextResult: '',
+              setUseContextResult: testFunc,
+            }}
+          >
+            <GlobalContextInput />
+          </AppProviders.Provider>
+        </AppProvider>,
+      )
+    })
+
+    const input = screen.getByRole('textbox')
+
+    // default value
+    expect(input).toHaveValue('')
+
+    // userEvent
+    userEvent.type(input, 'TEST')
+
+    // change value
+    expect(targetTestFunc).toBeCalledWith('T')
+    expect(targetTestFunc).toBeCalledWith('E')
+    expect(targetTestFunc).toBeCalledWith('S')
+    expect(targetTestFunc).toBeCalledWith('T')
+  })
+  it('userEvent onKeyPress enter', () => {
+    const testFunc = jest.fn()
+    const targetTestFunc = jest.fn()
+
+    act(() => {
+      render(
+        <AppProvider>
+          <AppProviders.Provider
+            value={{
+              useContextInput: '',
+              setUseContextInput: testFunc,
+              useContextResult: '',
+              setUseContextResult: targetTestFunc,
+            }}
+          >
+            <GlobalContextInput />
+          </AppProviders.Provider>
+        </AppProvider>,
+      )
+    })
+
+    const input = screen.getByRole('textbox')
+
+    // default value
+    expect(input).toHaveValue('')
+
+    // userEvent
+    userEvent.type(input, 'TEST{enter}')
+
+    // change value
+    expect(targetTestFunc).toBeCalled()
   })
 })

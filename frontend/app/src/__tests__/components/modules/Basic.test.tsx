@@ -1,5 +1,4 @@
 import { act, cleanup, render, screen } from '@testing-library/react'
-import mockRouter from 'next-router-mock'
 import { RecoilRoot } from 'recoil'
 
 // contexts
@@ -12,10 +11,6 @@ import Basic from '../../../components/modules/Basic'
 
 - Rendering
 */
-
-// mock化
-jest.mock('next/dist/client/router', () => require('next-router-mock'))
-mockRouter.setCurrentUrl('/')
 
 // Processing to be performed before the test
 beforeEach(() => {
@@ -56,7 +51,13 @@ describe('Unit -> modules', () => {
     ).toBeTruthy()
 
     // image
+    expect(screen.getByRole('img')).toBeTruthy()
+    expect(screen.getByTestId('test_img')).toBeTruthy()
+    expect(screen.getByAltText('test_img')).toBeTruthy()
+
     // input
-    // expect(screen.getByRole('textbox')).toBeTruthy()
+    expect(screen.getByPlaceholderText('testing')).toBeTruthy()
+    expect(screen.getByRole('checkbox')).toBeTruthy()
+    expect(screen.getByRole('slider')).toBeTruthy()
   })
 })

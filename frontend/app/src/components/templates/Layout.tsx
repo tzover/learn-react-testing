@@ -16,7 +16,9 @@ const Layout: React.FC<Props> = memo((props) => {
   return (
     <>
       <Header title={title} appName={appName} />
-      <div className='px-10 py-8'>{children}</div>
+      <div className='px-10 py-8' data-testid='layout-frame'>
+        {children}
+      </div>
       <Footer />
     </>
   )

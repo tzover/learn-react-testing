@@ -1,7 +1,7 @@
 import { act, cleanup, render, screen } from '@testing-library/react'
 
 // components
-import Header from '../../../components/modules/Header'
+import Testing from '../../../../components/modules/basic/Testing'
 
 /* 実施するテストケース
 
@@ -22,8 +22,13 @@ afterEach(() => {
 describe('Unit -> modules', () => {
   it('Rendering', () => {
     act(() => {
-      render(<Header title={'TEST'} appName={'TEST'} />)
+      render(
+        <Testing testing='TEST'>
+          <h2>TESTING</h2>
+        </Testing>,
+      )
     })
+
     expect(screen.getByText('TEST')).toBeInTheDocument()
   })
 })

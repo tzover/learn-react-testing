@@ -1,7 +1,7 @@
 import { act, cleanup, render, screen } from '@testing-library/react'
 
 // components
-import Header from '../../../components/modules/Header'
+import Layout from '../../../components/templates/Layout'
 
 /* 実施するテストケース
 
@@ -22,8 +22,14 @@ afterEach(() => {
 describe('Unit -> modules', () => {
   it('Rendering', () => {
     act(() => {
-      render(<Header title={'TEST'} appName={'TEST'} />)
+      render(
+        <Layout title='TEST' appName='LAYOUT-TEST'>
+          <h2>TEST</h2>
+        </Layout>,
+      )
     })
-    expect(screen.getByText('TEST')).toBeInTheDocument()
+
+    expect(screen.getByText('LAYOUT-TEST')).toBeInTheDocument()
+    expect(screen.getByTestId('layout-frame')).toHaveClass('px-10 py-8')
   })
 })

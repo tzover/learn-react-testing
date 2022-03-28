@@ -8,6 +8,8 @@ import { pageState } from '../../../contexts/TodosPagenationAtom'
 // hooks
 import useTodos from '../../../hooks/useTodos'
 
+export const idCreater = (id: number) => (id === 1 ? 0 : (id - 1) * 5)
+
 // interface
 interface Props {
   idx: number
@@ -18,7 +20,7 @@ const DeleteButton = memo((props: Props) => {
   const pageIdx = useRecoilValue(pageState)
   const { deleteTodo } = useTodos()
 
-  const newId = idx + (pageIdx === 1 ? 0 : (pageIdx - 1) * 5)
+  const newId = idx + idCreater(pageIdx)
 
   return (
     <button

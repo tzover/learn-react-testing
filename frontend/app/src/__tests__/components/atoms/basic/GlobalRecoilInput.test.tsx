@@ -1,5 +1,5 @@
 import { act, cleanup, render, screen } from '@testing-library/react'
-import mockRouter from 'next-router-mock'
+import userEvent from '@testing-library/user-event'
 import { RecoilRoot } from 'recoil'
 
 // components
@@ -8,11 +8,8 @@ import GlobalRecoilInput from '../../../../components/atoms/basic/GlobalRecoilIn
 /* 実施するテストケース
 
 - Rendering
+- userEvent onChange and onKeyPress
 */
-
-// mock化
-jest.mock('next/dist/client/router', () => require('next-router-mock'))
-mockRouter.setCurrentUrl('/')
 
 // Processing to be performed before the test
 beforeEach(() => {
@@ -25,7 +22,7 @@ afterEach(() => {
 })
 
 // Testing
-describe('Unit -> pages', () => {
+describe('Unit -> atoms', () => {
   it('Rendering', () => {
     act(() => {
       render(
@@ -36,5 +33,45 @@ describe('Unit -> pages', () => {
     })
 
     expect(screen.getByRole('textbox')).toBeTruthy()
+  })
+  it('userEvent onChange', () => {
+    act(() => {
+      render(
+        <RecoilRoot>
+          <GlobalRecoilInput />
+        </RecoilRoot>,
+      )
+    })
+
+    const input = screen.getByRole('textbox')
+
+    // default value
+    expect(input).toHaveValue('')
+
+    // userEvent
+    userEvent.type(input, 'TEST')
+
+    // change value
+    expect(input).toHaveValue('TEST')
+  })
+  it('userEvent onKeyPress enter', () => {
+    act(() => {
+      render(
+        <RecoilRoot>
+          <GlobalRecoilInput />
+        </RecoilRoot>,
+      )
+    })
+
+    const input = screen.getByRole('textbox')
+
+    // default value
+    expect(input).toHaveValue('')
+
+    // userEvent
+    userEvent.type(input, 'TEST{enter}')
+
+    // change value
+    expect(input).toHaveValue('TEST')
   })
 })

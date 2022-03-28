@@ -6,7 +6,7 @@ const PageBackButton = () => {
     <div className='w-full text-right px-10'>
       <button
         className='p-5 border-2 rounded-2xl hover:bg-pink-100 hover:underline'
-        onClick={() => router.back()}
+        onClick={() => router.push('/')}
       >
         Back
       </button>

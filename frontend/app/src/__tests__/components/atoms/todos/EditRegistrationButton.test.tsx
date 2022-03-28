@@ -1,6 +1,10 @@
 import { act, cleanup, render, screen } from '@testing-library/react'
-import mockRouter from 'next-router-mock'
+// import userEvent from '@testing-library/user-event'
 import { RecoilRoot } from 'recoil'
+// import { useEffect } from 'react'
+
+// contexts
+// import { editTodosState, todosState } from '../../../../contexts/TodosAtom'
 
 // components
 import EditRegistrationButton from '../../../../components/atoms/todos/EditRegistrationButton'
@@ -8,11 +12,8 @@ import EditRegistrationButton from '../../../../components/atoms/todos/EditRegis
 /* 実施するテストケース
 
 - Rendering
+- userEvent onClick
 */
-
-// mock化
-jest.mock('next/dist/client/router', () => require('next-router-mock'))
-mockRouter.setCurrentUrl('/')
 
 // Processing to be performed before the test
 beforeEach(() => {
@@ -24,8 +25,14 @@ afterEach(() => {
   cleanup()
 })
 
+// const RecoilObserver = ({ node, onChange }: { node: any; onChange: any }) => {
+//   const value = useRecoilValue(node)
+//   useEffect(() => onChange(value), [onChange, value])
+//   return null
+// }
+
 // Testing
-describe('Unit -> pages', () => {
+describe('Unit -> atoms', () => {
   it('Rendering', () => {
     act(() => {
       render(
@@ -37,4 +44,21 @@ describe('Unit -> pages', () => {
 
     expect(screen.getByRole('button', { name: /go/i })).toBeTruthy()
   })
+  // it('userEvent onClick', () => {
+  //   const testFunc = jest.fn()
+  //   act(() => {
+  //     render(
+  //       <RecoilRoot>
+  //         <RecoilObserver node={editTodosState} onChange={testFunc} />
+  //         <EditRegistrationButton inputTodo='TEST' />
+  //       </RecoilRoot>,
+  //     )
+  //   })
+
+  //   const button = screen.getByRole('button')
+
+  //   userEvent.click(button)
+
+  //   // expect(testFunc).toBeCalled()
+  // })
 })

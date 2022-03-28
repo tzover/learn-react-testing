@@ -1,5 +1,8 @@
 import { act, cleanup, render, screen } from '@testing-library/react'
-import mockRouter from 'next-router-mock'
+import userEvent from '@testing-library/user-event'
+
+// contexts
+import AppProvider, { AppProviders } from '../../../../contexts/AppProvider'
 
 // components
 import GlobalContextButton from '../../../../components/atoms/basic/GlobalContextButton'
@@ -7,11 +10,8 @@ import GlobalContextButton from '../../../../components/atoms/basic/GlobalContex
 /* 実施するテストケース
 
 - Rendering
+- userEvent onClick
 */
-
-// mock化
-jest.mock('next/dist/client/router', () => require('next-router-mock'))
-mockRouter.setCurrentUrl('/')
 
 // Processing to be performed before the test
 beforeEach(() => {
@@ -24,12 +24,52 @@ afterEach(() => {
 })
 
 // Testing
-describe('Unit -> pages', () => {
+describe('Unit -> atoms', () => {
   it('Rendering', () => {
+    const testFunc = jest.fn()
     act(() => {
-      render(<GlobalContextButton />)
+      render(
+        <AppProvider>
+          <AppProviders.Provider
+            value={{
+              useContextInput: '',
+              setUseContextInput: testFunc,
+              useContextResult: 'TEST',
+              setUseContextResult: testFunc,
+            }}
+          >
+            <GlobalContextButton />
+          </AppProviders.Provider>
+        </AppProvider>,
+      )
     })
 
     expect(screen.getByRole('button', { name: /push/i })).toBeTruthy()
+  })
+  it('userEvent onClick', () => {
+    const testFunc = jest.fn()
+    const targetTestFunc = jest.fn()
+    act(() => {
+      render(
+        <AppProvider>
+          <AppProviders.Provider
+            value={{
+              useContextInput: '',
+              setUseContextInput: testFunc,
+              useContextResult: 'TEST',
+              setUseContextResult: targetTestFunc,
+            }}
+          >
+            <GlobalContextButton />
+          </AppProviders.Provider>
+        </AppProvider>,
+      )
+    })
+
+    const button = screen.getByRole('button', { name: /push/i })
+
+    userEvent.click(button)
+
+    expect(targetTestFunc).toBeCalled()
   })
 })
