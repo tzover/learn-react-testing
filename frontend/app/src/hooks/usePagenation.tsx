@@ -23,7 +23,7 @@ const usePageNation = (news: string | any[]) => {
       setPageIdx(pageNum - 1)
       setSliceIdx(sliceIdx - 1)
 
-      if (pageNum === 1) {
+      if (pageNum <= 1) {
         setPageIdx(1)
         setSliceIdx(0)
         setPageSliceIdx(0)

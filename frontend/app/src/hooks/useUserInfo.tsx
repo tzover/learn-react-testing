@@ -17,10 +17,10 @@ const useUserInfo = () => {
     loading: false,
   })
 
-  const fetchRequest = () => {
+  const fetchRequest = async () => {
     // loading
     setResponse((prevState) => ({ ...prevState, loading: true }))
-    axios
+    await axios
       .get<UserIF[]>('https://jsonplaceholder.typicode.com/users')
       .then((res) =>
         setResponse({
