@@ -1,8 +1,8 @@
-import { act, cleanup, render, screen } from '@testing-library/react'
+import { act, cleanup, render } from '@testing-library/react'
 import { RecoilRoot } from 'recoil'
 
 // components
-import GlobalState from '../../../../components/modules/basic/GlobalState'
+import Todos from '../../../components/modules/Todos'
 
 /* 実施するテストケース
 
@@ -25,12 +25,9 @@ describe('Unit -> modules', () => {
     act(() => {
       render(
         <RecoilRoot>
-          <GlobalState />
+          <Todos />
         </RecoilRoot>,
       )
     })
-
-    expect(screen.getByText('Recoil components')).toBeInTheDocument()
-    expect(screen.getByText('useContext')).toBeInTheDocument()
   })
 })

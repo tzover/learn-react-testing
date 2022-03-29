@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useState } from 'react'
 
-// interface
+// models
 import { UserIF } from '../../../models/user'
 
 // hooks

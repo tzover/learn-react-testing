@@ -1,4 +1,5 @@
 import { act, cleanup, render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 
 // contexts
 import { fakeUsers } from '../../../../contexts/tests/fakeUsers'
@@ -33,5 +34,21 @@ describe('Unit -> modules', () => {
     expect(screen.getByText('Server side fetch')).toBeInTheDocument()
     expect(screen.getByText('Click event fetch (client)')).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Click here!' })).toBeTruthy()
+  })
+  it('userEvent onClick', async () => {
+    act(() => {
+      render(<FetchEvent users={fakeUsers} />)
+    })
+
+    const button = screen.getByRole('button', { name: 'Click here!' })
+
+    // userEvent
+    act(() => {
+      userEvent.click(button)
+    })
+
+    // button style
+    expect(screen.getByRole('button', { name: 'Clicked' })).toBeTruthy()
+    expect(screen.getByRole('button', { name: 'Clicked' })).toBeDisabled()
   })
 })
