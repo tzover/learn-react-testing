@@ -43,6 +43,7 @@
     "eslint-plugin-react": "^7.26.1",
     "jest": "^27.4.7",
     "jest-css-modules": "^2.1.0",
+    "msw": "^0.39.2",
     "next-router-mock": "^0.6.5",
     "postcss": "^8.3.11",
     "prettier": "^2.4.1",

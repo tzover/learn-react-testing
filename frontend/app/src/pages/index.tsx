@@ -7,6 +7,7 @@ import { appName, testCase, title } from '../contexts/AppBasicContext'
 // components
 import Layout from '../components/templates/Layout'
 import SubTitle from '../components/atoms/SubTitle'
+import UserList from '../components/UserList'
 
 const Home: NextPage = () => {
   const router = useRouter()
@@ -29,6 +30,7 @@ const Home: NextPage = () => {
             </div>
           ))}
         </div>
+        <UserList />
       </div>
     </Layout>
   )
